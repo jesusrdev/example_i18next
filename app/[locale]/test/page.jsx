@@ -1,13 +1,12 @@
-import LanguageChanger from "@/components/LanguageChanger";
 import initTranslations from "@/app/i18n";
-
-import styles from "./page.module.css";
+// import styles from "@/app/[locale]/page.module.css";
 import ExampleClientComponent from "@/components/ExampleClientComponent";
+import ExampleServerComponent from "@/components/ExampleServerComponent";
 import TranslationsProvider from "@/components/TranslationsProvider";
 
-const i18nNamespaces = ["home"];
+const i18nNamespaces = ["test"];
 
-export default async function Home({ params: { locale } }) {
+export default async function Test({ params: { locale } }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
   return (
@@ -16,10 +15,10 @@ export default async function Home({ params: { locale } }) {
       locale={locale}
       resources={resources}
     >
-      <main className={styles.main}>
-        <h1>{t("header")}</h1>
+      <main>
+        <h1>{t("title")}</h1>
         <ExampleClientComponent />
-        <LanguageChanger />
+        <ExampleServerComponent ns={i18nNamespaces} locale={locale} />
       </main>
     </TranslationsProvider>
   );
